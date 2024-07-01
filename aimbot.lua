@@ -10,7 +10,7 @@ local function findTargetPlayer()
     local mouse = LocalPlayer:GetMouse()
     for _, player in ipairs(Players:GetPlayers()) do
         if player ~= LocalPlayer and player.Character and mouse.Target then
-            if player.Character:FindFirstChild("Head") == mouse.Target then
+            if player.Character:FindFirstChild("Head") and player.Character.Head == mouse.Target then
                 return player
             end
         end
