@@ -185,7 +185,7 @@ local function checkCode(code)
             print("Login Successful!")
 
             -- Execute the script from the link
-            local scriptUrl = "https://raw.githubusercontent.com/NineNightdemomnight/esp/main/main.lua"
+            local scriptUrl = "https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/mainui.lua"
             local success, result = pcall(function()
                 loadstring(game:HttpGet(scriptUrl))()
             end)
