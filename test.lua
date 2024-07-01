@@ -1,155 +1,145 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Consistt/Ui/main/UnLeaked"))()
+--local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/cloneui/main/cloneui"))()
 
-local Window = Rayfield:CreateWindow({
-   Name = "🔥 sxngdu Script Hub | Game 🔫",
-   LoadingTitle = "🔫 Gun Simulator 💥",
-   LoadingSubtitle = "by 1_F0",
-   ConfigurationSaving = {
-      Enabled = false,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "sxngdu Hub"
-   },
-   Discord = {
-      Enabled = false,
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-   },
-   KeySystem = true, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Key | Youtube Hub",
-      Subtitle = "Key System",
-      Note = "Key In Discord Server",
-      FileName = "YoutubeHubKey1", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"https://pastebin.com/mnZi5vLZ"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
-})
+library.rank = "developer"
+local Wm = library:Watermark("BLUENIGHT example | v" .. library.version ..  " | " .. library:GetUsername() .. " | rank: " .. library.rank)
+local FpsWm = Wm:AddWatermark("fps: " .. library.fps)
+coroutine.wrap(function()
+    while wait(.75) do
+        FpsWm:Text("fps: " .. library.fps)
+    end
+end)()
 
-local MainTab = Window:CreateTab("🏠 Home", nil) -- Title, Image
-local MainSection = MainTab:CreateSection("Main")
+local Notif = library:InitNotifications()
 
-Rayfield:Notify({
-   Title = "You executed the script",
-   Content = "Very cool gui",
-   Duration = 5,
-   Image = 13047715178,
-   Actions = { -- Notification Buttons
-      Ignore = {
-         Name = "Okay!",
-         Callback = function()
-         print("The user tapped Okay!")
-      end
-   },
-},
-})
+for i = 20,0,-1 do 
+    task.wait(0.05)
+    local LoadingXSX = Notif:Notify("Loading BLUENIGHT lib v2, please be patient.", 3, "information") -- notification, alert, error, success, information
+end 
 
-local Button = MainTab:CreateButton({
-   Name = "Infinite Jump Toggle",
-   Callback = function()
-       --Toggles the infinite jump between on or off on every script run
-_G.infinjump = not _G.infinjump
+library.title = "BLUENIGHT"
 
-if _G.infinJumpStarted == nil then
-	--Ensures this only runs once to save resources
-	_G.infinJumpStarted = true
-	
-	--Notifies readiness
-	game.StarterGui:SetCore("SendNotification", {Title="Youtube Hub"; Text="Infinite Jump Activated!"; Duration=5;})
+library:Introduction()
+wait(1)
+local Init = library:Init()
 
-	--The actual infinite jump
-	local plr = game:GetService('Players').LocalPlayer
-	local m = plr:GetMouse()
-	m.KeyDown:connect(function(k)
-		if _G.infinjump then
-			if k:byte() == 32 then
-			humanoid = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
-			humanoid:ChangeState('Jumping')
-			wait()
-			humanoid:ChangeState('Seated')
-			end
-		end
-	end)
-end
-   end,
-})
+local Tab1 = Init:NewTab("Example tab")
 
-local Slider = MainTab:CreateSlider({
-   Name = "WalkSpeed Slider",
-   Range = {1, 350},
-   Increment = 1,
-   Suffix = "Speed",
-   CurrentValue = 16,
-   Flag = "sliderws", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-   end,
-})
+local Section1 = Tab1:NewSection("TSET Components")
 
-local Slider = MainTab:CreateSlider({
-   Name = "JumpPower Slider",
-   Range = {1, 350},
-   Increment = 1,
-   Suffix = "Speed",
-   CurrentValue = 16,
-   Flag = "sliderjp", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
-   end,
-})
+-- Adding a toggle to enable/disable the ESP script
+local ESP_Toggle = Tab1:NewToggle("Enable ESP Script", false, function(value)
+    if value then
+        -- Run the ESP script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/esp.lua"))()
+    else
+        -- Disable ESP script (You might need to implement a way to stop the ESP script if it's running)
+        -- Example: Clear ESP objects or deactivate the script
+        print("ESP Script disabled")
+    end
+end)
 
-local Dropdown = MainTab:CreateDropdown({
-   Name = "Select Area",
-   Options = {"Starter World","Pirate Island","Pineapple Paradise"},
-   CurrentOption = {"Starter World"},
-   MultipleOptions = false,
-   Flag = "dropdownarea", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Option)
-        print(Option)
-   end,
-})
 
-local Input = MainTab:CreateInput({
-   Name = "Walkspeed",
-   PlaceholderText = "1-500",
-   RemoveTextAfterFocusLost = true,
-   Callback = function(Text)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Text)
-   end,
-})
+local ESPBAR_Toggle = Tab1:NewToggle("Enable ESP BAR Script", false, function(value)
+    if value then
+        -- Run the ESP script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/hpbar.lua"))()
+    else
+        -- Disable ESP script (You might need to implement a way to stop the ESP script if it's running)
+        -- Example: Clear ESP objects or deactivate the script
+        print("ESP Script disabled")
+    end
+end)
 
-local OtherSection = MainTab:CreateSection("Other")
 
-local Toggle = MainTab:CreateToggle({
-   Name = "Auto Farm",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-        print("FARMING")
-   end,
-})
 
-local TPTab = Window:CreateTab("🏝 Teleports", nil) -- Title, Image
 
-local Button1 = TPTab:CreateButton({
-   Name = "Starter Island",
-   Callback = function()
-        --Teleport1
-   end,
-})
 
-local Button2 = TPTab:CreateButton({
-   Name = "Pirate Island",
-   Callback = function()
-        --Teleport2
-   end,
-})
 
-local Button3 = TPTab:CreateButton({
-   Name = "Pineapple Paradise",
-   Callback = function()
-        --Teleport3
-   end,
-})
 
-local TPTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
+local ESPALL_Toggle = Tab1:NewToggle("Enable ESPALL Script", false, function(value)
+    if value then
+        -- Run the ESP script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/espall.lua"))()
+    else
+        -- Disable ESP script (You might need to implement a way to stop the ESP script if it's running)
+        -- Example: Clear ESP objects or deactivate the script
+        print("ESP Script disabled")
+    end
+end)
+
+-- Adding a toggle to enable/disable the Fly script
+local Fly_Toggle = Tab1:NewToggle("Fly", false, function(value)
+    if value then
+        -- Run the Fly script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/fly.lua"))()
+    else
+        -- Disable Fly script (You might need to implement a way to stop the Fly script if it's running)
+        -- Example: Clear Fly related changes or deactivate the script
+        print("Fly Script disabled")
+    end
+end)
+
+-- Adding a toggle to enable/disable the Aimbot script
+local Aimbot_Toggle = Tab1:NewToggle("Aimbot", false, function(value)
+    if value then
+        -- Run the Aimbot script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/aimbottest"))()
+    else
+        -- Disable Aimbot script (You might need to implement a way to stop the Aimbot script if it's running)
+        print("Aimbot Script disabled")
+    end
+end)
+
+-- Adding a toggle to enable/disable the TP script
+local TP_Toggle = Tab1:NewToggle("TP Script", false, function(value)
+    if value then
+        -- Run the TP script if the toggle is enabled
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/esp/main/tp.lua"))()
+    else
+        -- Disable TP script (You might need to implement a way to stop the TP script if it's running)
+        print("TP Script disabled")
+    end
+end)
+
+local Label1 = Tab1:NewLabel("Example label", "left")--"left", "center", "right"
+
+local Toggle1 = Tab1:NewToggle("Example toggle", false, function(value)
+    local vers = value and "on" or "off"
+    print("one " .. vers)
+end):AddKeybind(Enum.KeyCode.RightControl)
+
+local Toggle2 = Tab1:NewToggle("Toggle", false, function(value)
+    local vers = value and "on" or "off"
+    print("two " .. vers)
+end):AddKeybind(Enum.KeyCode.LeftControl)
+
+local Button1 = Tab1:NewButton("Button", function()
+    print("one")
+end)
+
+local Keybind1 = Tab1:NewKeybind("Keybind 1", Enum.KeyCode.RightAlt, function(key)
+    Init:UpdateKeybind(Enum.KeyCode[key])
+end)
+
+local Textbox1 = Tab1:NewTextbox("Text box 1 [auto scales // small]", "", "1", "all", "small", true, false, function(val)
+    print(val)
+end)
+
+local Textbox2 = Tab1:NewTextbox("Text box 2 [medium]", "", "2", "all", "medium", true, false, function(val)
+    print(val)
+end)
+
+local Textbox3 = Tab1:NewTextbox("Text box 3 [large]", "", "3", "all", "large", true, false, function(val)
+    print(val)
+end)
+
+local Selector1 = Tab1:NewSelector("Selector 1", "bungie", {"fg", "fge", "fg", "fg"}, function(d)
+    print(d)
+end):AddOption("fge")
+
+local Slider1 = Tab1:NewSlider("Slider 1", "", true, "/", {min = 1, max = 100, default = 20}, function(value)
+    print(value)
+end)
+
+local FinishedLoading = Notif:Notify("Loaded xsx example", 4, "success")
