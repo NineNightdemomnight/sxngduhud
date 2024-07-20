@@ -87,25 +87,35 @@ local ESPLINE_Toggle = Tab1:NewToggle(" วาป / TP 🧊   ", false, function
 end)
 
 
-
-
 -- Adding a toggle to enable/disable the Fly script
-local Fly_Toggle = Tab1:NewToggle("บิน / Fly  🦋", false, function(value)
-    if value then
+local Fly_Toggle = Tab1:NewToggle("วิงเร็ว/ run   🦋", false, function(value)
+   if value then
         -- Run the Fly script if the toggle is enabled
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/fly.lua"))()
+   -    loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/speed.lua"))()
     else
         -- Disable Fly script (You might need to implement a way to stop the Fly script if it's running)
-        -- Example: Clear Fly related changes or deactivate the script
+       --  Example: Clear Fly related changes or deactivate the script
         print("Fly Script disabled")
-    end
+   end
 end)
+
+-- Adding a toggle to enable/disable the Fly script
+--local Fly_Toggle = Tab1:NewToggle("บิน / Fly  🦋", false, function(value)
+ --   if value then
+        -- Run the Fly script if the toggle is enabled
+   --     loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/fly.lua"))()
+   -- else
+        -- Disable Fly script (You might need to implement a way to stop the Fly script if it's running)
+        -- Example: Clear Fly related changes or deactivate the script
+    --    print("Fly Script disabled")
+ --   end
+--end)
 
 -- Adding a toggle to enable/disable the Aimbot script
 local Aimbot_Toggle = Tab1:NewToggle("ล็อกหัว เบต้า/Aimbot beta 👤 ctrl+Q", false, function(value)
     if value then
         -- Run the Aimbot script if the toggle is enabled
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/aimbot"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/aimbot.lua"))()
     else
         -- Disable Aimbot script (You might need to implement a way to stop the Aimbot script if it's running)
         print("Aimbot Script disabled")
