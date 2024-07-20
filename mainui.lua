@@ -91,7 +91,7 @@ end)
 local Fly_Toggle = Tab1:NewToggle("วิงเร็ว/ run   🦋", false, function(value)
    if value then
         -- Run the Fly script if the toggle is enabled
-   -    loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/speed.lua"))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/NineNightdemomnight/sxngduhud/main/speed.lua"))()
     else
         -- Disable Fly script (You might need to implement a way to stop the Fly script if it's running)
        --  Example: Clear Fly related changes or deactivate the script
